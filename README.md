@@ -128,3 +128,10 @@ const book: Book | undefined;
 
 // 로 형식이 Book 이거나 혹은 undefined 이다 . 라고 정의해주었다.
 ```
+
+## 마치며
+
+간단하게 서버를 Deno 로 띄워보았는데 NodeJS 랑 확연한 차이를 느끼지 못했다.
+
+TypeScript 를 기본적으로 지원한다는 것 자체에는 매우 긍정적이며 npm 을 사용하지않고
+node_modules 폴더를 만들지 않는 것 에 대해서도 좋게 생각한다.
