@@ -87,7 +87,7 @@ localhost:8080 포트로 접속 시 다음 화면을 볼 수 있다.
 ```javascript
 // 기존 노드서버의 경우
 (async function() {
-    await 비동기 작업호출    
+    await 비동기 작업호출
 })
 
 // 이였지만 DenoServer 의 경우
@@ -95,3 +95,20 @@ await 비동기 작업 바로 호출
 ```
 
 매우 간결해진 것을 알 수 있다.
+
+## 서버 구축
+
+<img src="./gitImages/BuildServer.png">
+
+위 사진의 해당 코드들은 APlication 과 Router 를 가져와 사용할 것이라고 정의하는 부분이다.
+
+<img src="./gitImages/ResponseBody.png">
+
+```javascript
+router.get('/', (context) => {
+	// context 안에는 response 뿐 아니라 request 까지 있으며 구조분해 또한 당연히 가능하다
+	context.request.body();
+	// 위 코드 안에는 우리가 서버로 보낸 데이터의 정보가 들어있으며 await 으로 받아야한다.
+});
+// 위 사진과 같이 context.response.body 로 사용자에게 보여줄 화면을 정의할 수 있음.
+```

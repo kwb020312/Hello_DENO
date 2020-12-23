@@ -1,4 +1,5 @@
 import { Application, Router } from 'https://deno.land/x/oak@v6.4.0/mod.ts';
+import { v4 } from 'https://deno.land/std@0.82.0/uuid/mod.ts';
 
 const app = new Application();
 const router = new Router();
@@ -7,8 +8,8 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 interface Book {
-	id: String;
-	title: String;
+	id: string;
+	title: string;
 	author: string;
 }
 
@@ -30,8 +31,28 @@ let books: Book[] = [
 	}
 ];
 
-router.get('/', (context) => {
-	context.response.body = 'Hello WOrld!';
-});
+router
+	.get('/', (context) => {
+		context.response.body = 'Hello WOrld!';
+	})
+	.get('/books', (context) => {
+		context.response.body = books;
+	})
+	.post('/book', async (ctx) => {
+		const body = await ctx.request.body();
+		// 만약 정보를 제공하지 않았다면
+		if (!ctx.request.hasBody) {
+			ctx.response.status = 400;
+			ctx.response.body = '제공받은 데이터가 없습니다.';
+		} else {
+			// 정보를 제공 받았다면
+			// 우선 임의로 아이디를 생성하고 제공받은 정보로 book object 를 만들어준다
+			const book: Book = await body.value;
+			book.id = v4.generate();
+			books.push(book);
+			ctx.response.status = 201;
+			ctx.response.body = book;
+		}
+	});
 console.log('Server is listening on port 3000');
 await app.listen({ port: 3000 });
