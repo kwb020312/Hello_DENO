@@ -49,3 +49,31 @@ Deno 를 만들게 된 것이다. 아래 기존 NodeJs 의 단점들을 알아�
 5. Top Level 에서 Async 없이 Await 사용이 가능하다.
 
 6. fetch() 함수를 node-fetch 모듈 다운로드 없이 사용이 가능하다.
+
+## 모듈 불러오기
+
+<img src="./gitImages/HowToImport.png">
+
+위 사진과 같이 모듈을 불러올 때 공식 홈페이지 링크를 참조할 뿐 따로 다운받아 node_modules 파일을 두지 않는다.
+
+## 보안성 증대
+
+```javascript
+deno run https://deno.land/std@0.82.0/examples/chat/server.ts
+```
+
+해당 코드는 8080 포트로 채팅서버를 띄우는 코드인데 이 또한 링크를 참조할 뿐 별도의 작업을 하지 않아도 실행되며 이를 실행하는 경우
+
+<img src="./gitImages/NotAllowed.png">
+
+위와 같은 에러가 발생한다 즉 우리 코드상에서 네트워크 엑세스를 주지 않았기 때문에 실행 권한이 없다는 경고이며
+
+```javascript
+deno run --allow-net https://deno.land/std@0.82.0/examples/chat/server.ts
+```
+
+할 시 정상작동한다
+
+localhost:8080 포트로 접속 시 다음 화면을 볼 수 있다.
+
+<img src="./gitImages/DenoChatServer.png">
