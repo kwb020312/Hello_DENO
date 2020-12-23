@@ -112,3 +112,19 @@ router.get('/', (context) => {
 });
 // 위 사진과 같이 context.response.body 로 사용자에게 보여줄 화면을 정의할 수 있음.
 ```
+
+## Params
+
+<img src="./gitImages/Params.png">
+
+위 사진과 같이 context.params.(paramsName) 안에 값이 담겨있으며,
+
+라우터 내부에서 조건문을 사용하여 다른 데이터를 출력시켜줄 수 있다.
+
+Deno 는 TypeScript 기반으로 동작하기 때문에
+
+```typescript
+const book: Book | undefined;
+
+// 로 형식이 Book 이거나 혹은 undefined 이다 . 라고 정의해주었다.
+```
