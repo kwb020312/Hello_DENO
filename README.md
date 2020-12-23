@@ -77,3 +77,21 @@ deno run --allow-net https://deno.land/std@0.82.0/examples/chat/server.ts
 localhost:8080 포트로 접속 시 다음 화면을 볼 수 있다.
 
 <img src="./gitImages/DenoChatServer.png">
+
+## 서버 띄우기
+
+<img src="./gitImages/MakeServer.png">
+
+위 사진처럼 서버를 띄울 수 있는데 코드를 보면 알겠지만 TopLevel Async 가 바로 여기서 나온다
+
+```javascript
+// 기존 노드서버의 경우
+(async function() {
+    await 비동기 작업호출    
+})
+
+// 이였지만 DenoServer 의 경우
+await 비동기 작업 바로 호출
+```
+
+매우 간결해진 것을 알 수 있다.
