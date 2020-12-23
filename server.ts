@@ -25,7 +25,7 @@ let books: Book[] = [
 		author: 'Two'
 	},
 	{
-		id: '1',
+		id: '3',
 		title: 'Book Three',
 		author: 'Three'
 	}
@@ -52,6 +52,16 @@ router
 			books.push(book);
 			ctx.response.status = 201;
 			ctx.response.body = book;
+		}
+	})
+	.get('/book/:id', async (context) => {
+		const book: Book | undefined = books.find((b) => b.id === context.params.id);
+		if (book) {
+			context.response.body = book;
+			context.response.status = 200;
+		} else {
+			context.response.body = '해당 조건에 맞는 책을 찾지 못했습니다.';
+			context.response.status = 404;
 		}
 	});
 console.log('Server is listening on port 3000');
